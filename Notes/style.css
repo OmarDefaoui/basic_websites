@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.notes {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.note {
+    margin: 10px;
+}
+
+.note .toolbar {
+    background-color: red;
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px;
+    outline: grey solid 1px;
+    border-bottom: none;
+}
+
+.note .toolbar button {
+    background-color: transparent;
+    border: none;
+    margin-left: 4px;
+}
+
+.note .toolbar button span {
+    color: orange;
+    font-size: 20px;
+}
+
+.note textarea {
+    background-color: yellow;
+    padding: 10px;
+    border: none;
+    outline: grey solid 1px;
+}
+
+.note textarea:focus {
+    outline: black solid 1px;
+}
+
+.note textarea::-webkit-scrollbar {
+    width: 5px;
+}
+
+.note textarea::-webkit-scrollbar-thumb {
+    background-color: orange;
+    border-radius: 5px;
+}
+
+/* Add note */
+
+#add_note {
+    position: fixed;
+    background-color: orange;
+    right: 0;
+    bottom: 0;
+    margin: 0 20px 20px 0;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px black;
+}
+
+#add_note span {
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: inline-block;
+}
