@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 main {
@@ -33,6 +34,10 @@ main {
     background-color: transparent;
     border: none;
     margin-left: 4px;
+}
+
+.note .toolbar button:hover {
+    cursor: pointer;
 }
 
 .note .toolbar button span {
@@ -71,7 +76,8 @@ main {
     border: 1px solid white;
     padding: 10px;
     border-radius: 50%;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 8px grey;
+    outline: none;
 }
 
 #add_note span {
