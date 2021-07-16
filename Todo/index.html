@@ -15,31 +15,13 @@
     <main>
         <div class="todos_container">
             <span>Todo List</span>
-            <div class="todo">
-                <input type="checkbox" name="todo status" class="todo_status">
-                <input type="text" name="todo text" class="todo_text">
-                <button>
-                    <span class="material-icons">clear</span>
-                </button>
-            </div>
-
-            <div class="todo">
-                <input type="checkbox" name="todo status" class="todo_status">
-                <input type="text" name="todo text" class="todo_text">
-                <button>
-                    <span class="material-icons">clear</span>
-                </button>
-            </div>
-
-            <div class="todo">
-                <input type="checkbox" name="todo status" class="todo_status">
-                <input type="text" name="todo text" class="todo_text">
-                <button>
-                    <span class="material-icons">clear</span>
-                </button>
-            </div>
         </div>
-        <input type="text" name="new todo" class="new_todo_text" placeholder="Add new TODO">
+        <div class="new_todo_container hidden">
+            <input type="text" name="new todo" class="new_todo_text" placeholder="Add new TODO">
+            <button class="add_todo">
+                <span class="material-icons">add</span>
+            </button>
+        </div>
         <button class="add_new_todo">
             <span class="material-icons">add</span>
             Add new TODO
