@@ -1,11 +1,11 @@
-const addNewTodo = document.querySelector('.add_new_todo');
+const addNewTodoButton = document.querySelector('.add_new_todo');
 const addTodo = document.querySelector('.add_todo');
 const newTodoText = document.querySelector('.new_todo_text');
 const newTodoConatiner = document.querySelector('.new_todo_container');
 
 const todosContainer = document.querySelector('.todos_container');
 
-addNewTodo.addEventListener('click', () => {
+addNewTodoButton.addEventListener('click', () => {
     console.log('add new todo clicked');
 
     // blur backgroud
@@ -30,17 +30,29 @@ addTodo.addEventListener('click', () => {
     // Add todo to UI
     if (!newTodoText.value)
         return;
+
+    const todoJsonToString = JSON.stringify({
+        status: false,
+        text: newTodoText.value
+    });
+    addNewTodo(todoJsonToString);
+    newTodoText.value = '';
+});
+
+function addNewTodo(todoJsonToString) {
+    const todoJSON = JSON.parse(todoJsonToString);
+
     var todo = document.createElement('div');
     todo.classList.add('todo');
     todo.innerHTML = `
         <input type="checkbox" name="todo status" class="todo_status">
-        <p class="todo_text">${newTodoText.value}</p>
+        <p class="todo_text">${todoJSON.text}</p>
         <button>
             <span class="material-icons">clear</span>
         </button>
     `;
     todosContainer.appendChild(todo);
-    newTodoText.value = '';
+
 
     const todoStatus = todo.querySelector(".todo_status");
     const todoText = todo.querySelector(".todo_text");
@@ -48,6 +60,8 @@ addTodo.addEventListener('click', () => {
 
     deleteTodo.addEventListener('click', () => {
         todosContainer.removeChild(todo);
+
+        saveTodos();
     });
 
     todoStatus.addEventListener('change', (e) => {
@@ -58,15 +72,38 @@ addTodo.addEventListener('click', () => {
             console.log("Checkbox is not checked");
             todoText.classList.remove('line_through');
         }
+
+        saveTodos();
     });
 
     saveTodos();
-});
+}
 
 function saveTodos() {
+    var todos = [];
+    todosContainer.querySelectorAll('.todo').forEach(todo => {
 
+        const todoJsonToString = JSON.stringify({
+            status: todo.querySelector(".todo_status").checked,
+            text: todo.querySelector(".todo_text").innerHTML
+        });
+
+        todos.push(todoJsonToString);
+    });
+
+    localStorage.setItem('todos', JSON.stringify(todos));
+
+    console.log(todos);
 }
 
 function getSavedTodos() {
-
+    const todos = JSON.parse(localStorage.getItem('todos'));
+    console.log(todos);
+    if (todos) {
+        todos.forEach(todo => {
+            addNewTodo(todo);
+        });
+    }
 }
+
+getSavedTodos();
