@@ -5,6 +5,14 @@ const newTodoConatiner = document.querySelector('.new_todo_container');
 
 const todosContainer = document.querySelector('.todos_container');
 
+newTodoText.addEventListener("keyup", function (event) {
+    console.log('voila');
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        addTodo.click();
+    }
+});
+
 addNewTodoButton.addEventListener('click', () => {
     console.log('add new todo clicked');
 
@@ -46,7 +54,7 @@ function addNewTodo(todoJsonToString) {
     todo.classList.add('todo');
     todo.innerHTML = `
         <input type="checkbox" name="todo status" class="todo_status">
-        <p class="todo_text">${todoJSON.text}</p>
+        <p class="todo_text"></p>
         <button>
             <span class="material-icons">clear</span>
         </button>
@@ -57,6 +65,12 @@ function addNewTodo(todoJsonToString) {
     const todoStatus = todo.querySelector(".todo_status");
     const todoText = todo.querySelector(".todo_text");
     const deleteTodo = todo.querySelector("button");
+
+    todoText.innerHTML = todoJSON.text;
+    if (todoJSON.status) {
+        todoStatus.checked = true;
+        todoText.classList.add('line_through');
+    }
 
     deleteTodo.addEventListener('click', () => {
         todosContainer.removeChild(todo);
